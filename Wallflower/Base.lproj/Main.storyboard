@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMZ-oF-Fb7">
-                                <rect key="frame" x="251.5" y="285" width="97" height="30"/>
+                                <rect key="frame" x="264.5" y="285" width="72" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Choose Photo"/>
+                                <state key="normal" title="Add Photo"/>
                                 <connections>
-                                    <action selector="choosePhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tya-NK-GHq"/>
+                                    <action selector="addPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yj7-2u-mtT"/>
                                 </connections>
                             </button>
                         </subviews>

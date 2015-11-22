@@ -8,8 +8,8 @@
 
 import UIKit
 import AVFoundation
-import Alamofire
 import SwiftyJSON
+import Alamofire
 
 let WalgreensAPIKey = "ej1qRGcociFTwC3HFa00v3Wxra6gbwRJ"
 
@@ -25,8 +25,8 @@ class ViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
-	@IBAction func choosePhotoPressed(sender: AnyObject) {
-		
+	@IBAction func addPhotoPressed(sender: AnyObject) {
+        createPhotoActionSheet()
 	}
 	
 	func sendChosenPhoto(photo: UIImage) {
@@ -57,10 +57,113 @@ class ViewController: UIViewController {
 	func sendToWalgreens(mi: UIImage) {
 		
 	}
-
+    
+    
+    //MARK: Photo Selection
+    func determinePermissionStatus() -> (Bool){
+        switch AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo) {
+        case AVAuthorizationStatus.Authorized:
+            return true
+        case AVAuthorizationStatus.Denied:
+            return false
+        case AVAuthorizationStatus.Restricted:
+            return false
+        case AVAuthorizationStatus.NotDetermined:
+            var authorized = false
+            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (granted: Bool) in
+                authorized = granted
+            })
+            return authorized
+        }
+    }
+    
+    private func createPhotoActionSheet() {
+        if determinePermissionStatus() == true {
+            var camera = false
+            let photoActionSheet = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+                camera = true
+                photoActionSheet.addAction(UIAlertAction(title: "Take New", style: UIAlertActionStyle.Default, handler: { action in
+                    self.takeNew()
+                }))
+            }
+            
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+                camera = true
+                photoActionSheet.addAction(UIAlertAction(title: "Choose from Photo Library", style: UIAlertActionStyle.Default, handler: { action in
+                    self.selectFromLibrary()
+                }))
+            }
+            
+            if camera == false {
+                noCameraAlert()
+                return
+            }
+            photoActionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {action in
+                photoActionSheet.dismissViewControllerAnimated(true, completion: nil)
+            }))
+//            photoActionSheet.popoverPresentationController?.barButtonItem = cameraButton
+//            photoActionSheet.popoverPresentationController?.sourceView = view
+            
+            presentViewController(photoActionSheet, animated: true, completion: nil)
+        } else {
+            noCameraPermissionAlert()
+        }
+    }
+    
+    
+    private func takeNew() {
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            let myAlertView = UIAlertView()
+            myAlertView.title = "Error: Device has no camera or photo library."
+            myAlertView.delegate = nil
+            myAlertView.show()
+        }
+        let picker: UIImagePickerController = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = UIImagePickerControllerSourceType.Camera
+        
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    private func selectFromLibrary() {
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            let myAlertView = UIAlertView()
+            myAlertView.title = "Error: Device has no photo library"
+            myAlertView.delegate = nil
+            myAlertView.show()
+        }
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    private func noCameraAlert() {
+        let noCameraAlert = UIAlertController(title: "Error", message: "Device has no camera", preferredStyle: .Alert)
+        noCameraAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        presentViewController(noCameraAlert, animated: true, completion: nil)
+    }
+    
+    private func noCameraPermissionAlert() {
+        let noCameraPermissionAlert = UIAlertController(title: "Permission Required", message: "We don't have permission to use your camera or photos.  Please revise your privacy settings. ", preferredStyle: .Alert)
+        noCameraPermissionAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { action in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        noCameraPermissionAlert.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: { action in
+            let appSettings: NSURL = NSURL(string: UIApplicationOpenSettingsURLString)!
+            UIApplication.sharedApplication().openURL(appSettings)
+        }))
+        presentViewController(noCameraPermissionAlert, animated: true, completion: nil)
+    }
 }
 
-extension ViewController: UIImagePickerControllerDelegate {
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 		defer {
 			picker.dismissViewControllerAnimated(true, completion: nil)
