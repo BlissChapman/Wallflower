@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		418338E827D3B7C0F30F1C88 /* Pods_Wallflower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE202DBFCE43BAF2881956B /* Pods_Wallflower.framework */; };
 		B886989B1C01DCE00082448E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886989A1C01DCE00082448E /* AppDelegate.swift */; };
 		B886989D1C01DCE00082448E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886989C1C01DCE00082448E /* ViewController.swift */; };
 		B88698A01C01DCE00082448E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B886989E1C01DCE00082448E /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7CFDA2AF8E6D354C48354EBB /* Pods-Wallflower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallflower.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallflower/Pods-Wallflower.debug.xcconfig"; sourceTree = "<group>"; };
+		8938802F6EE53B76407A5532 /* Pods-Wallflower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallflower.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallflower/Pods-Wallflower.release.xcconfig"; sourceTree = "<group>"; };
 		B88698971C01DCE00082448E /* Wallflower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wallflower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B886989A1C01DCE00082448E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B886989C1C01DCE00082448E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		B88698A11C01DCE00082448E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B88698A41C01DCE00082448E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B88698A61C01DCE00082448E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBE202DBFCE43BAF2881956B /* Pods_Wallflower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallflower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				418338E827D3B7C0F30F1C88 /* Pods_Wallflower.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		769E5F8DF4A71E6DBC1ABE10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBE202DBFCE43BAF2881956B /* Pods_Wallflower.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F453BCCCDCB4596E2E93C56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CFDA2AF8E6D354C48354EBB /* Pods-Wallflower.debug.xcconfig */,
+				8938802F6EE53B76407A5532 /* Pods-Wallflower.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B886988E1C01DCE00082448E = {
 			isa = PBXGroup;
 			children = (
 				B88698991C01DCE00082448E /* Wallflower */,
 				B88698981C01DCE00082448E /* Products */,
+				9F453BCCCDCB4596E2E93C56 /* Pods */,
+				769E5F8DF4A71E6DBC1ABE10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B88698A91C01DCE00082448E /* Build configuration list for PBXNativeTarget "Wallflower" */;
 			buildPhases = (
+				EBCE98C8BBF52DBD23B147F2 /* Check Pods Manifest.lock */,
 				B88698931C01DCE00082448E /* Sources */,
 				B88698941C01DCE00082448E /* Frameworks */,
 				B88698951C01DCE00082448E /* Resources */,
+				D0FB0DBA36D2F10B21F6F9C5 /* Embed Pods Frameworks */,
+				C1D0A6373A0CA85350D665CF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C1D0A6373A0CA85350D665CF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wallflower/Pods-Wallflower-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0FB0DBA36D2F10B21F6F9C5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wallflower/Pods-Wallflower-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBCE98C8BBF52DBD23B147F2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B88698931C01DCE00082448E /* Sources */ = {
@@ -245,6 +320,7 @@
 		};
 		B88698AA1C01DCE00082448E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CFDA2AF8E6D354C48354EBB /* Pods-Wallflower.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wallflower/Info.plist;
@@ -256,6 +332,7 @@
 		};
 		B88698AB1C01DCE00082448E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8938802F6EE53B76407A5532 /* Pods-Wallflower.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wallflower/Info.plist;
@@ -284,6 +361,7 @@
 				B88698AB1C01DCE00082448E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
